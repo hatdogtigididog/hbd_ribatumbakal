@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Jo</title>
     <style>
-        /* Imported only your exact chosen fonts */
+        /* Exact font configuration you wanted */
         @import url('https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&family=Playfair+Display:ital,wght@0,400;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap');
 
         * {
@@ -162,7 +161,7 @@
             margin-bottom: 20px;
         }
 
-        /* Simple, clean message styling */
+        /* Clean Poppins typography for simple look */
         .letter-body {
             padding: 0 10px 0 50px; 
             font-family: 'Poppins', sans-serif; 
@@ -274,11 +273,11 @@
         <div class="date-marker">June 2026</div>
 
         <div class="letter-body">
-            <p>To my strong girl, happy happy birthday. I hope you’re having a good day and you’re happy because you deserve it. <span class="tagalog-highlight">(lord kaawan nito to kahit ngayon lang)</span>.</p>
+            <p>To my strong girl, happy happy birthday. I hope you’re having a good day and you’re happy because you deserve it. <span class="tagalog-highlight">(lord kaawan niyo to kahit ngayon lang)</span>.</p>
             
-            <p>Thank you for proving that unexpected friendships are one of the best. I’m forever grateful that Seventeen brought you to me. As what Cheol said, I didn’t find them late — I found them when I needed them the most, and when I finally found them, they gave me you, someone I needed too. I couldn’t imagine my carat life without you, <span class="tagalog-highlight">ri batumbakal (legends lang nakaka alam)</span>.</p>
+            <p>Thank you for proving that unexpected friendships are one of the best. I’m forever grateful that Seventeen brought you to me. As what Cheol said, I didn’t found them late — I found them when I needed them the most, and when I finally found them, they gave me you, someone I needed too. I couldn’t imagine my carat life without you, <span class="tagalog-highlight">ri batumbakal (legends lang nakaka alam)</span>.</p>
             
-            <p>Bebi, do bear in mind that you’re more than the negative thoughts in your head. You might see messy and difficult, but to me you’re a rare concept that people need to vision clearly. An abstract that needs someone smart enough to figure it out, and someone who’s willing to learn so deep so that they can truly understand.</p>
+            <p>Bebi, do bear in mind that you’re more than the negative thoughts in your head. You might see messy and difficult, but to me you’re a rare concept that people needs to vision clearly. An abstract that needs someone who's smart enough to figure it out, and someone that is willing to learn so deep so that they can truly understand.</p>
             
             <p>I hope you know how precious you are despite your shortcomings, and I wish you don't see yourself like that. Please be gentle to yourself — be kind to my precious bebi.</p>
 
@@ -325,7 +324,7 @@
     </div>
 
     <audio id="audio-player" loop preload="auto">
-        <source src="https://pub-841978d067c244c09dbe9eb02bda639f.r2.dev/SEVENTEEN_-_Us_Again_(돌고_돌아).mp3" type="audio/mpeg">
+        <source src="https://pub-841978d067c244c09dbe9eb02bda639f.r2.dev/SEVENTEEN_-_Us_Again_(%EB%8F%8C%EA%B3%A0_%EB%8F%8C%EC%95%84).mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -336,8 +335,16 @@
             if (player) {
                 if (!isPlaying) {
                     player.play()
-                        .then(() => { isPlaying = true; })
-                        .catch(err => console.log("Audio play error:", err));
+                        .then(() => { 
+                            isPlaying = true; 
+                        })
+                        .catch(err => {
+                            console.log("Audio trigger safety prompt enabled:", err);
+                            // Safety popup if mobile browser tries to freeze music load
+                            alert("Click OK to start your SEVENTEEN background track! 🎉");
+                            player.play();
+                            isPlaying = true;
+                        });
                 } else {
                     player.pause();
                     isPlaying = false;
@@ -347,9 +354,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
