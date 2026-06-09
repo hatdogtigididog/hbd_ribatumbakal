@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Jo</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;1,400&family=Poppins:wght@300;400;500&display=swap');
+        /* Imported only your exact chosen fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Dawning of a New Day&family=Playfair+Display:ital,wght@0,400;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap');
 
         * {
             box-sizing: border-box;
@@ -64,10 +65,9 @@
             border: 1px solid rgba(74, 59, 50, 0.3);
             padding: 4px 12px;
             border-radius: 4px;
-            font-family: 'Dancing Script', cursive;
-            font-size: 16px;
+            font-family: 'Dawning of a New Day', cursive;
+            font-size: 20px;
             color: #4a3b32;
-            font-style: italic;
         }
 
         /* Music Button / Interaction Zone */
@@ -107,17 +107,20 @@
 
         .hbd-text {
             font-family: 'Playfair Display', serif;
-            letter-spacing: 4px;
-            font-size: 14px;
-            color: #706253;
-            text-transform: uppercase;
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 2px;
+            font-size: 26px;
+            color: #615243;
         }
 
         .name-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 85px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 75px;
             color: #2b221a;
-            margin-top: -10px;
+            margin-top: -5px;
         }
 
         /* Polaroid Image Layout */
@@ -143,30 +146,30 @@
         }
 
         .polaroid-caption {
-            font-family: 'Dancing Script', cursive;
-            font-size: 18px;
+            font-family: 'Dawning of a New Day', cursive;
+            font-size: 26px;
             color: #7a6b5c;
-            margin-top: 12px;
-            font-style: italic;
+            margin-top: 8px;
         }
 
-        /* Text content body styling */
+        /* Date Entry */
         .date-marker {
-            font-family: 'Dancing Script', cursive;
-            font-size: 20px;
+            font-family: 'Dawning of a New Day', cursive;
+            font-size: 26px;
             color: #7a6b5c;
             text-align: right;
             margin-right: 20px;
             margin-bottom: 20px;
-            font-style: italic;
         }
 
+        /* Simple, clean message styling */
         .letter-body {
-            padding: 0 10px 0 50px; /* Aligned with notebook lines */
-            font-family: 'Playfair Display', serif;
-            font-size: 18px;
+            padding: 0 10px 0 50px; 
+            font-family: 'Poppins', sans-serif; 
+            font-size: 14px;
+            font-weight: 400;
             color: #2b221a;
-            line-height: 32px; /* Perfect match for background rows */
+            line-height: 32px; 
         }
 
         .letter-body p {
@@ -177,6 +180,7 @@
         .tagalog-highlight {
             font-style: italic;
             color: #8c3b32;
+            font-weight: 500;
         }
 
         /* Sign-off Details */
@@ -187,27 +191,28 @@
         }
 
         .closing-line {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 13px;
             color: #7a6b5c;
             font-style: italic;
         }
 
         .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 52px;
+            font-family: 'Dawning of a New Day', cursive;
+            font-size: 55px;
             color: #2b221a;
             line-height: 1.1;
             margin-top: 5px;
+            font-weight: 600;
         }
 
         .sub-signature {
-            font-family: 'Playfair Display', serif;
-            font-size: 13px;
-            letter-spacing: 2px;
-            color: #7a6b5c;
-            text-transform: uppercase;
+            font-family: 'Dawning of a New Day', cursive; 
+            font-size: 26px;
+            letter-spacing: 1px;
+            color: #8c3b32;
             margin-top: 5px;
+            display: block;
         }
 
         /* Geometric Footer Accents */
@@ -227,8 +232,7 @@
             transform: rotate(45deg);
         }
 
-        /* Hidden Iframe Player container */
-        #music-container {
+        #audio-player {
             display: none;
         }
     </style>
@@ -310,7 +314,7 @@
         <div class="sign-off-section">
             <div class="closing-line">with all my love, always —</div>
             <div class="signature">gf ni minghao</div>
-            <div class="sub-signature">Your Forever Carat Bestie ✦</div>
+            <span class="sub-signature">Your Forever Carat Bestie ✦</span>
         </div>
 
         <div class="footer-deco">
@@ -320,41 +324,22 @@
         </div>
     </div>
 
-    <div id="music-container">
-        <iframe id="youtube-player" width="10" height="10" 
-            src="https://www.youtube.com/embed/g9Z3Xatv3mU?enablejsapi=1&controls=0&showinfo=0&rel=0" 
-            frameborder="0" allow="autoplay">
-        </iframe>
-    </div>
+    <audio id="audio-player" loop preload="auto">
+        <source src="https://pub-841978d067c244c09dbe9eb02bda639f.r2.dev/SEVENTEEN_-_Us_Again_(돌고_돌아).mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
+        var player = document.getElementById('audio-player');
         var isPlaying = false;
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            // Player loaded completely
-        }
-
         function togglePlay() {
-            if (player && typeof player.playVideo === 'function') {
+            if (player) {
                 if (!isPlaying) {
-                    player.playVideo();
-                    isPlaying = true;
+                    player.play()
+                        .then(() => { isPlaying = true; })
+                        .catch(err => console.log("Audio play error:", err));
                 } else {
-                    player.pauseVideo();
+                    player.pause();
                     isPlaying = false;
                 }
             }
@@ -362,6 +347,7 @@
     </script>
 </body>
 </html>
+
 
 
 
