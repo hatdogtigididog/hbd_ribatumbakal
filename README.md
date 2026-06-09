@@ -1,2 +1,0 @@
-# hbd_ribatumbakal
-nyarkk
