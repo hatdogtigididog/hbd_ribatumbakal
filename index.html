@@ -72,21 +72,29 @@
 
         /* Music Button / Interaction Zone */
         .music-btn {
-            width: 36px;
-            height: 36px;
-            background: rgba(74, 59, 50, 0.2);
+            width: 40px;
+            height: 40px;
+            background: #8c3b32;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: none;
+            outline: none;
+            transition: transform 0.2s ease;
+        }
+
+        .music-btn:active {
+            transform: scale(0.9);
         }
 
         .music-btn::before {
             content: '♫';
-            color: #4a3b32;
-            font-size: 18px;
+            color: #ebdcb9;
+            font-size: 20px;
+            font-weight: bold;
         }
 
         /* Main Headers */
@@ -120,7 +128,6 @@
             transform: rotate(-2deg);
             width: 85%;
             margin: 30px auto;
-            transition: transform 0.3s ease;
             text-align: center;
         }
 
@@ -137,7 +144,7 @@
 
         .polaroid-caption {
             font-family: 'Dancing Script', cursive;
-            font-size: 16px;
+            font-size: 18px;
             color: #7a6b5c;
             margin-top: 12px;
             font-style: italic;
@@ -146,7 +153,7 @@
         /* Text content body styling */
         .date-marker {
             font-family: 'Dancing Script', cursive;
-            font-size: 18px;
+            font-size: 20px;
             color: #7a6b5c;
             text-align: right;
             margin-right: 20px;
@@ -164,6 +171,7 @@
 
         .letter-body p {
             margin-bottom: 32px;
+            text-align: justify;
         }
 
         .tagalog-highlight {
@@ -219,19 +227,19 @@
             transform: rotate(45deg);
         }
 
-        /* Hidden Direct Audio Player element */
-        #bg-music {
+        /* Hidden Iframe Player container */
+        #music-container {
             display: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="letter-container" onclick="triggerMusic()">
+    <div class="letter-container">
         
         <div class="top-controls">
             <div class="seal-back-btn">← seal it back</div>
-            <div class="music-btn"></div>
+            <button class="music-btn" onclick="togglePlay()" title="Play Music"></button>
         </div>
 
         <div class="header-section">
@@ -240,22 +248,22 @@
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/bRPgR2Z/hbd-pu.jpg" alt="hbd pu cartoon">
+            <img src="hbd_pu.jpg" alt="hbd pu cartoon">
             <div class="polaroid-caption">hbd pu!</div>
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/Vv3Y7pB/jeonghan-cheol.jpg" alt="Jeonghan and S.Coups">
+            <img src="jeonghan_cheol.jpg" alt="Jeonghan and S.Coups">
             <div class="polaroid-caption">the jeonghan to my cheol</div>
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/Y7Xvj5t/dog-hat.jpg" alt="Chihuahua in birthday hat">
+            <img src="dog_hat.jpg" alt="Chihuahua in birthday hat">
             <div class="polaroid-caption">happy bday bebi 🎉</div>
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/9vFzLSk/cat-flower.jpg" alt="Cat holding flower drawing">
+            <img src="cat_flower.jpg" alt="Cat holding flower drawing">
             <div class="polaroid-caption">for you, always 🌸</div>
         </div>
 
@@ -270,13 +278,13 @@
             
             <p>I hope you know how precious you are despite your shortcomings, and I wish you don't see yourself like that. Please be gentle to yourself — be kind to my precious bebi.</p>
 
-            <div class="polaroid-frame" style="margin: 40px auto;">
-                <img src="https://i.ibb.co/Vv3Y7pB/jeonghan-cheol.jpg" alt="Jeonghan and S.Coups">
+            <div class="polaroid-frame">
+                <img src="jeonghan_cheol.jpg" alt="Jeonghan and S.Coups">
                 <div class="polaroid-caption">the jeonghan to my cheol</div>
             </div>
 
-            <div class="polaroid-frame" style="margin: 40px auto;">
-                <img src="https://i.ibb.co/bRPgR2Z/hbd-pu.jpg" alt="hbd pu cartoon">
+            <div class="polaroid-frame">
+                <img src="hbd_pu.jpg" alt="hbd pu cartoon">
                 <div class="polaroid-caption">hbd pu!</div>
             </div>
 
@@ -290,12 +298,12 @@
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/Y7Xvj5t/dog-hat.jpg" alt="Chihuahua in birthday hat">
+            <img src="dog_hat.jpg" alt="Chihuahua in birthday hat">
             <div class="polaroid-caption">happy bday bebi 🎉</div>
         </div>
 
         <div class="polaroid-frame">
-            <img src="https://i.ibb.co/9vFzLSk/cat-flower.jpg" alt="Cat holding flower drawing">
+            <img src="cat_flower.jpg" alt="Cat holding flower drawing">
             <div class="polaroid-caption">for you, always 🌸</div>
         </div>
 
@@ -312,18 +320,43 @@
         </div>
     </div>
 
-    <audio id="bg-music" loop>
-        <source src="https://scummbar.com/mi2/MI1-CD/01%20-%20Opening%20Themes%20-%20Introduction.mp3" type="audio/mpeg">
-    </audio>
+    <div id="music-container">
+        <iframe id="youtube-player" width="10" height="10" 
+            src="https://www.youtube.com/embed/g9Z3Xatv3mU?enablejsapi=1&controls=0&showinfo=0&rel=0" 
+            frameborder="0" allow="autoplay">
+        </iframe>
+    </div>
 
     <script>
-        let musicStarted = false;
-        function triggerMusic() {
-            const track = document.getElementById('bg-music');
-            if (!musicStarted && track) {
-                track.play().then(() => {
-                    musicStarted = true;
-                }).catch(err => console.log("Audio waiting for explicit browser gesture context:", err));
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        var isPlaying = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Player loaded completely
+        }
+
+        function togglePlay() {
+            if (player && typeof player.playVideo === 'function') {
+                if (!isPlaying) {
+                    player.playVideo();
+                    isPlaying = true;
+                } else {
+                    player.pauseVideo();
+                    isPlaying = false;
+                }
             }
         }
     </script>
